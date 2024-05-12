@@ -3,6 +3,7 @@ package client
 import (
 	"bufio"
 	"fmt"
+	"log/slog"
 	"net"
 	"sync"
 	"time"
@@ -23,21 +24,22 @@ type Client struct {
 	waitMapMutex         sync.RWMutex
 	waitMap              map[uint64]chan proto.Message
 	lastMessageAt        time.Time
-	handlerFunc          func(proto.Message)
+	eventHandler         func(*Client, proto.Message)
 	CommunicationTimeout time.Duration
 	apiConn              connection.ApiConnection
 }
 
-// GetClient returns esphome api client
-func GetClient(clientID, address, encryptionKey string, timeout time.Duration, handlerFunc func(proto.Message)) (*Client, error) {
+func New(clientID, address, encryptionKey string, timeout time.Duration, eventHandler func(*Client, proto.Message)) (*Client, error) {
 	conn, err := net.DialTimeout("tcp", address, timeout)
 	if err != nil {
 		return nil, err
 	}
 
 	// add noop func, if handler not defined
-	if handlerFunc == nil {
-		handlerFunc = func(msg proto.Message) {}
+	if eventHandler == nil {
+		eventHandler = func(_ *Client, msg proto.Message) {
+			slog.Debug("event received", "msg", msg)
+		}
 	}
 
 	apiConn, err := connection.GetConnection(conn, timeout, encryptionKey)
@@ -51,7 +53,7 @@ func GetClient(clientID, address, encryptionKey string, timeout time.Duration, h
 		reader:               bufio.NewReader(conn),
 		waitMap:              make(map[uint64]chan proto.Message),
 		stopChan:             make(chan bool),
-		handlerFunc:          handlerFunc,
+		eventHandler:         eventHandler,
 		CommunicationTimeout: timeout,
 		apiConn:              apiConn,
 	}
@@ -204,8 +206,8 @@ func (c *Client) getMessage() error {
 		if c.handleInternal(message) {
 			return nil
 		} else if c.isExternal(message) {
-			if c.handlerFunc != nil {
-				c.handlerFunc(message)
+			if c.eventHandler != nil {
+				c.eventHandler(c, message)
 				return nil
 			}
 		}
@@ -292,3 +294,8 @@ func (c *Client) waitDone(messageType uint64) {
 	defer c.waitMapMutex.Unlock()
 	delete(c.waitMap, messageType)
 }
+
+// func (c *Client) SubscribeVoiceAssistant() {
+// 	c.Send(&api.SubscribeVoiceAssistantRequest{}, api.VoiceAssistantEventResponseID)
+// 	c.Send()
+// }

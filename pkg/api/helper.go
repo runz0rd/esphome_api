@@ -93,6 +93,36 @@ const (
 	BluetoothGATTErrorResponseID
 	BluetoothGATTWriteResponseID
 	BluetoothGATTNotifyResponseID
+	BluetoothDevicePairingResponseID
+	BluetoothDeviceUnpairingResponseID
+	UnsubscribeBluetoothLEAdvertisementsRequestID
+	BluetoothDeviceClearCacheResponseID
+	SubscribeVoiceAssistantRequestID
+	VoiceAssistantRequestID
+	VoiceAssistantResponseID
+	VoiceAssistantEventResponseID
+	BluetoothLERawAdvertisementsResponseID
+	ListEntitiesAlarmControlPanelResponseID
+	AlarmControlPanelStateResponseID
+	AlarmControlPanelCommandRequestID
+	ListEntitiesTextResponseID
+	TextStateResponseID
+	TextCommandRequestID
+	ListEntitiesDateResponseID
+	DateStateResponseID
+	DateCommandRequestID
+	ListEntitiesTimeResponseID
+	TimeStateResponseID
+	TimeCommandRequestID
+	VoiceAssistantAudioID
+	ListEntitiesEventResponseID
+	EventResponseID
+	ListEntitiesValveResponseID
+	ValveStateResponseID
+	ValveCommandRequestID
+	ListEntitiesDateTimeResponseID
+	DateTimeStateResponseID
+	DateTimeCommandRequestID
 )
 
 func TypeID(message interface{}) uint64 {
@@ -105,250 +135,226 @@ func TypeID(message interface{}) uint64 {
 		message = reflect.ValueOf(message).Elem().Interface()
 	}
 	switch message.(type) {
-
 	case HelloRequest:
 		return HelloRequestTypeID
-
 	case HelloResponse:
 		return HelloResponseTypeID
-
 	case ConnectRequest:
 		return ConnectRequestTypeID
-
 	case ConnectResponse:
 		return ConnectResponseTypeID
-
 	case DisconnectRequest:
 		return DisconnectRequestTypeID
-
 	case DisconnectResponse:
 		return DisconnectResponseTypeID
-
 	case PingRequest:
 		return PingRequestTypeID
-
 	case PingResponse:
 		return PingResponseTypeID
-
 	case DeviceInfoRequest:
 		return DeviceInfoRequestTypeID
-
 	case DeviceInfoResponse:
 		return DeviceInfoResponseTypeID
-
 	case ListEntitiesRequest:
 		return ListEntitiesRequestTypeID
-
 	case ListEntitiesBinarySensorResponse:
 		return ListEntitiesBinarySensorResponseTypeID
-
 	case ListEntitiesCoverResponse:
 		return ListEntitiesCoverResponseTypeID
-
 	case ListEntitiesFanResponse:
 		return ListEntitiesFanResponseTypeID
-
 	case ListEntitiesLightResponse:
 		return ListEntitiesLightResponseTypeID
-
 	case ListEntitiesSensorResponse:
 		return ListEntitiesSensorResponseTypeID
-
 	case ListEntitiesSwitchResponse:
 		return ListEntitiesSwitchResponseTypeID
-
 	case ListEntitiesTextSensorResponse:
 		return ListEntitiesTextSensorResponseTypeID
-
 	case ListEntitiesDoneResponse:
 		return ListEntitiesDoneResponseTypeID
-
 	case SubscribeStatesRequest:
 		return SubscribeStatesRequestTypeID
-
 	case BinarySensorStateResponse:
 		return BinarySensorStateResponseTypeID
-
 	case CoverStateResponse:
 		return CoverStateResponseTypeID
-
 	case FanStateResponse:
 		return FanStateResponseTypeID
-
 	case LightStateResponse:
 		return LightStateResponseTypeID
-
 	case SensorStateResponse:
 		return SensorStateResponseTypeID
-
 	case SwitchStateResponse:
 		return SwitchStateResponseTypeID
-
 	case TextSensorStateResponse:
 		return TextSensorStateResponseTypeID
-
 	case SubscribeLogsRequest:
 		return SubscribeLogsRequestTypeID
-
 	case SubscribeLogsResponse:
 		return SubscribeLogsResponseTypeID
-
 	case CoverCommandRequest:
 		return CoverCommandRequestTypeID
-
 	case FanCommandRequest:
 		return FanCommandRequestTypeID
-
 	case LightCommandRequest:
 		return LightCommandRequestTypeID
-
 	case SwitchCommandRequest:
 		return SwitchCommandRequestTypeID
-
 	case SubscribeHomeassistantServicesRequest:
 		return SubscribeHomeAssistantServicesRequestTypeID
-
 	case HomeassistantServiceResponse:
 		return HomeAssistantServiceResponseTypeID
-
 	case GetTimeRequest:
 		return GetTimeRequestTypeID
-
 	case GetTimeResponse:
 		return GetTimeResponseTypeID
-
 	case SubscribeHomeAssistantStatesRequest:
 		return SubscribeHomeAssistantStatesRequestTypeID
-
 	case SubscribeHomeAssistantStateResponse:
 		return SubscribeHomeAssistantStateResponseTypeID
-
 	case HomeAssistantStateResponse:
 		return HomeAssistantStateResponseTypeID
-
 	case ListEntitiesServicesResponse:
 		return ListEntitiesServicesResponseTypeID
-
 	case ExecuteServiceRequest:
 		return ExecuteServiceRequestTypeID
-
 	case ListEntitiesCameraResponse:
 		return ListEntitiesCameraResponseTypeID
-
 	case CameraImageResponse:
 		return CameraImageResponseTypeID
-
 	case CameraImageRequest:
 		return CameraImageRequestTypeID
-
 	case ListEntitiesClimateResponse:
 		return ListEntitiesClimateResponseTypeID
-
 	case ClimateStateResponse:
 		return ClimateStateResponseTypeID
-
 	case ClimateCommandRequest:
 		return ClimateCommandRequestTypeID
-
-	case NumberCommandRequest:
-		return ClimateCommandRequestTypeID
-
-	case SelectCommandRequest:
-		return SelectCommandRequestTypeID
-
-	case ButtonCommandRequest:
-		return ButtonCommandRequestTypeID
-
-	case LockCommandRequest:
-		return LockCommandRequestTypeID
-
-	case MediaPlayerCommandRequest:
-		return MediaPlayerCommandRequestTypeID
-
 	case ListEntitiesNumberResponse:
 		return ListEntitiesNumberResponseTypeID
-
 	case NumberStateResponse:
 		return NumberStateResponseTypeID
-
+	case NumberCommandRequest:
+		return NumberCommandRequestTypeID
 	case ListEntitiesSelectResponse:
 		return ListEntitiesSelectResponseTypeID
-
 	case SelectStateResponse:
 		return SelectStateResponseTypeID
-
+	case SelectCommandRequest:
+		return SelectCommandRequestTypeID
 	case ListEntitiesLockResponse:
 		return ListEntitiesLockResponseTypeID
-
 	case LockStateResponse:
 		return LockStateResponseTypeID
-
+	case LockCommandRequest:
+		return LockCommandRequestTypeID
 	case ListEntitiesButtonResponse:
 		return ListEntitiesButtonResponseTypeID
-
+	case ButtonCommandRequest:
+		return ButtonCommandRequestTypeID
 	case ListEntitiesMediaPlayerResponse:
 		return ListEntitiesMediaPlayerResponseTypeID
-
 	case MediaPlayerStateResponse:
 		return MediaPlayerStateResponseTypeID
-
+	case MediaPlayerCommandRequest:
+		return MediaPlayerCommandRequestTypeID
 	case SubscribeBluetoothLEAdvertisementsRequest:
 		return SubscribeBluetoothLEAdvertisementsRequestID
-
 	case BluetoothLEAdvertisementResponse:
 		return BluetoothLEAdvertisementResponseID
-
 	case BluetoothDeviceRequest:
 		return BluetoothDeviceRequestID
-
 	case BluetoothDeviceConnectionResponse:
 		return BluetoothDeviceConnectionResponseID
-
 	case BluetoothGATTGetServicesRequest:
 		return BluetoothGATTGetServicesRequestID
-
 	case BluetoothGATTGetServicesResponse:
 		return BluetoothGATTGetServicesResponseID
-
 	case BluetoothGATTGetServicesDoneResponse:
 		return BluetoothGATTGetServicesDoneResponseID
-
 	case BluetoothGATTReadRequest:
 		return BluetoothGATTReadRequestID
-
 	case BluetoothGATTReadResponse:
 		return BluetoothGATTReadResponseID
-
 	case BluetoothGATTWriteRequest:
 		return BluetoothGATTWriteRequestID
-
 	case BluetoothGATTReadDescriptorRequest:
 		return BluetoothGATTReadDescriptorRequestID
-
 	case BluetoothGATTWriteDescriptorRequest:
 		return BluetoothGATTWriteDescriptorRequestID
-
 	case BluetoothGATTNotifyRequest:
 		return BluetoothGATTNotifyRequestID
-
 	case BluetoothGATTNotifyDataResponse:
 		return BluetoothGATTNotifyDataResponseID
-
 	case SubscribeBluetoothConnectionsFreeRequest:
 		return SubscribeBluetoothConnectionsFreeRequestID
-
 	case BluetoothConnectionsFreeResponse:
 		return BluetoothConnectionsFreeResponseID
-
 	case BluetoothGATTErrorResponse:
 		return BluetoothGATTErrorResponseID
-
 	case BluetoothGATTWriteResponse:
 		return BluetoothGATTWriteResponseID
-
 	case BluetoothGATTNotifyResponse:
 		return BluetoothGATTNotifyResponseID
-
+	case BluetoothDevicePairingResponse:
+		return BluetoothDevicePairingResponseID
+	case BluetoothDeviceUnpairingResponse:
+		return BluetoothDeviceUnpairingResponseID
+	case UnsubscribeBluetoothLEAdvertisementsRequest:
+		return UnsubscribeBluetoothLEAdvertisementsRequestID
+	case BluetoothDeviceClearCacheResponse:
+		return BluetoothDeviceClearCacheResponseID
+	case SubscribeVoiceAssistantRequest:
+		return SubscribeVoiceAssistantRequestID
+	case VoiceAssistantRequest:
+		return VoiceAssistantRequestID
+	case VoiceAssistantResponse:
+		return VoiceAssistantResponseID
+	case VoiceAssistantEventResponse:
+		return VoiceAssistantEventResponseID
+	case BluetoothLERawAdvertisementsResponse:
+		return BluetoothLERawAdvertisementsResponseID
+	case ListEntitiesAlarmControlPanelResponse:
+		return ListEntitiesAlarmControlPanelResponseID
+	case AlarmControlPanelStateResponse:
+		return AlarmControlPanelStateResponseID
+	case AlarmControlPanelCommandRequest:
+		return AlarmControlPanelCommandRequestID
+	case ListEntitiesTextResponse:
+		return ListEntitiesTextResponseID
+	case TextStateResponse:
+		return TextStateResponseID
+	case TextCommandRequest:
+		return TextCommandRequestID
+	case ListEntitiesDateResponse:
+		return ListEntitiesDateResponseID
+	case DateStateResponse:
+		return DateStateResponseID
+	case DateCommandRequest:
+		return DateCommandRequestID
+	case ListEntitiesTimeResponse:
+		return ListEntitiesTimeResponseID
+	case TimeStateResponse:
+		return TimeStateResponseID
+	case TimeCommandRequest:
+		return TimeCommandRequestID
+	case VoiceAssistantAudio:
+		return VoiceAssistantAudioID
+	case ListEntitiesEventResponse:
+		return ListEntitiesEventResponseID
+	case EventResponse:
+		return EventResponseID
+	case ListEntitiesValveResponse:
+		return ListEntitiesValveResponseID
+	case ValveStateResponse:
+		return ValveStateResponseID
+	case ValveCommandRequest:
+		return ValveCommandRequestID
+	case ListEntitiesDateTimeResponse:
+		return ListEntitiesDateTimeResponseID
+	case DateTimeStateResponse:
+		return DateTimeStateResponseID
 	default:
 		return UndefinedTypeID
 	}
@@ -356,259 +362,228 @@ func TypeID(message interface{}) uint64 {
 
 func NewMessageByTypeID(typeID uint64) proto.Message {
 	switch typeID {
-
-	case 1:
+	case HelloRequestTypeID:
 		return new(HelloRequest)
-
-	case 2:
+	case HelloResponseTypeID:
 		return new(HelloResponse)
-
-	case 3:
+	case ConnectRequestTypeID:
 		return new(ConnectRequest)
-
-	case 4:
+	case ConnectResponseTypeID:
 		return new(ConnectResponse)
-
-	case 5:
+	case DisconnectRequestTypeID:
 		return new(DisconnectRequest)
-
-	case 6:
+	case DisconnectResponseTypeID:
 		return new(DisconnectResponse)
-
-	case 7:
+	case PingRequestTypeID:
 		return new(PingRequest)
-
-	case 8:
+	case PingResponseTypeID:
 		return new(PingResponse)
-
-	case 9:
+	case DeviceInfoRequestTypeID:
 		return new(DeviceInfoRequest)
-
-	case 10:
+	case DeviceInfoResponseTypeID:
 		return new(DeviceInfoResponse)
-
-	case 11:
+	case ListEntitiesRequestTypeID:
 		return new(ListEntitiesRequest)
-
-	case 12:
+	case ListEntitiesBinarySensorResponseTypeID:
 		return new(ListEntitiesBinarySensorResponse)
-
-	case 13:
+	case ListEntitiesCoverResponseTypeID:
 		return new(ListEntitiesCoverResponse)
-
-	case 14:
+	case ListEntitiesFanResponseTypeID:
 		return new(ListEntitiesFanResponse)
-
-	case 15:
+	case ListEntitiesLightResponseTypeID:
 		return new(ListEntitiesLightResponse)
-
-	case 16:
+	case ListEntitiesSensorResponseTypeID:
 		return new(ListEntitiesSensorResponse)
-
-	case 17:
+	case ListEntitiesSwitchResponseTypeID:
 		return new(ListEntitiesSwitchResponse)
-
-	case 18:
+	case ListEntitiesTextSensorResponseTypeID:
 		return new(ListEntitiesTextSensorResponse)
-
-	case 19:
+	case ListEntitiesDoneResponseTypeID:
 		return new(ListEntitiesDoneResponse)
-
-	case 20:
+	case SubscribeStatesRequestTypeID:
 		return new(SubscribeStatesRequest)
-
-	case 21:
+	case BinarySensorStateResponseTypeID:
 		return new(BinarySensorStateResponse)
-
-	case 22:
+	case CoverStateResponseTypeID:
 		return new(CoverStateResponse)
-
-	case 23:
+	case FanStateResponseTypeID:
 		return new(FanStateResponse)
-
-	case 24:
+	case LightStateResponseTypeID:
 		return new(LightStateResponse)
-
-	case 25:
+	case SensorStateResponseTypeID:
 		return new(SensorStateResponse)
-
-	case 26:
+	case SwitchStateResponseTypeID:
 		return new(SwitchStateResponse)
-
-	case 27:
+	case TextSensorStateResponseTypeID:
 		return new(TextSensorStateResponse)
-
-	case 28:
+	case SubscribeLogsRequestTypeID:
 		return new(SubscribeLogsRequest)
-
-	case 29:
+	case SubscribeLogsResponseTypeID:
 		return new(SubscribeLogsResponse)
-
-	case 30:
+	case CoverCommandRequestTypeID:
 		return new(CoverCommandRequest)
-
-	case 31:
+	case FanCommandRequestTypeID:
 		return new(FanCommandRequest)
-
-	case 32:
+	case LightCommandRequestTypeID:
 		return new(LightCommandRequest)
-
-	case 33:
+	case SwitchCommandRequestTypeID:
 		return new(SwitchCommandRequest)
-
-	case 34:
+	case SubscribeHomeAssistantServicesRequestTypeID:
 		return new(SubscribeHomeassistantServicesRequest)
-
-	case 35:
+	case HomeAssistantServiceResponseTypeID:
 		return new(HomeassistantServiceResponse)
-
-	case 36:
+	case GetTimeRequestTypeID:
 		return new(GetTimeRequest)
-
-	case 37:
+	case GetTimeResponseTypeID:
 		return new(GetTimeResponse)
-
-	case 38:
+	case SubscribeHomeAssistantStatesRequestTypeID:
 		return new(SubscribeHomeAssistantStatesRequest)
-
-	case 39:
+	case SubscribeHomeAssistantStateResponseTypeID:
 		return new(SubscribeHomeAssistantStateResponse)
-
-	case 40:
+	case HomeAssistantStateResponseTypeID:
 		return new(HomeAssistantStateResponse)
-
-	case 41:
+	case ListEntitiesServicesResponseTypeID:
 		return new(ListEntitiesServicesResponse)
-
-	case 42:
+	case ExecuteServiceRequestTypeID:
 		return new(ExecuteServiceRequest)
-
-	case 43:
+	case ListEntitiesCameraResponseTypeID:
 		return new(ListEntitiesCameraResponse)
-
-	case 44:
+	case CameraImageResponseTypeID:
 		return new(CameraImageResponse)
-
-	case 45:
+	case CameraImageRequestTypeID:
 		return new(CameraImageRequest)
-
-	case 46:
+	case ListEntitiesClimateResponseTypeID:
 		return new(ListEntitiesClimateResponse)
-
-	case 47:
+	case ClimateStateResponseTypeID:
 		return new(ClimateStateResponse)
-
-	case 48:
+	case ClimateCommandRequestTypeID:
 		return new(ClimateCommandRequest)
-
-	case 49:
+	case ListEntitiesNumberResponseTypeID:
 		return new(ListEntitiesNumberResponse)
-
-	case 50:
+	case NumberStateResponseTypeID:
 		return new(NumberStateResponse)
-
-	case 51:
+	case NumberCommandRequestTypeID:
 		return new(NumberCommandRequest)
-
-	case 52:
+	case ListEntitiesSelectResponseTypeID:
 		return new(ListEntitiesSelectResponse)
-
-	case 53:
+	case SelectStateResponseTypeID:
 		return new(SelectStateResponse)
-
-	case 54:
+	case SelectCommandRequestTypeID:
 		return new(SelectCommandRequest)
-
-	// case 55:
-	// 	return new(UnknownTypeID55)
-	//
-	// case 56:
-	// 	return new(UnknownTypeID56)
-	//
-	// case 57:
-	// 	return new(UnknownTypeID57)
-
-	case 58:
+	case ListEntitiesLockResponseTypeID:
 		return new(ListEntitiesLockResponse)
-
-	case 59:
+	case LockStateResponseTypeID:
 		return new(LockStateResponse)
-
-	case 60:
+	case LockCommandRequestTypeID:
 		return new(LockCommandRequest)
-
-	case 61:
+	case ListEntitiesButtonResponseTypeID:
 		return new(ListEntitiesButtonResponse)
-
-	case 62:
+	case ButtonCommandRequestTypeID:
 		return new(ButtonCommandRequest)
-
-	case 63:
+	case ListEntitiesMediaPlayerResponseTypeID:
 		return new(ListEntitiesMediaPlayerResponse)
-
-	case 64:
+	case MediaPlayerStateResponseTypeID:
 		return new(MediaPlayerStateResponse)
-
-	case 65:
+	case MediaPlayerCommandRequestTypeID:
 		return new(MediaPlayerCommandRequest)
-
-	case 66:
+	case SubscribeBluetoothLEAdvertisementsRequestID:
 		return new(SubscribeBluetoothLEAdvertisementsRequest)
-
-	case 67:
+	case BluetoothLEAdvertisementResponseID:
 		return new(BluetoothLEAdvertisementResponse)
-
-	case 68:
+	case BluetoothDeviceRequestID:
 		return new(BluetoothDeviceRequest)
-
-	case 69:
+	case BluetoothDeviceConnectionResponseID:
 		return new(BluetoothDeviceConnectionResponse)
-
-	case 70:
+	case BluetoothGATTGetServicesRequestID:
 		return new(BluetoothGATTGetServicesRequest)
-
-	case 71:
+	case BluetoothGATTGetServicesResponseID:
 		return new(BluetoothGATTGetServicesResponse)
-
-	case 72:
+	case BluetoothGATTGetServicesDoneResponseID:
 		return new(BluetoothGATTGetServicesDoneResponse)
-
-	case 73:
+	case BluetoothGATTReadRequestID:
 		return new(BluetoothGATTReadRequest)
-
-	case 74:
+	case BluetoothGATTReadResponseID:
 		return new(BluetoothGATTReadResponse)
-
-	case 75:
+	case BluetoothGATTWriteRequestID:
 		return new(BluetoothGATTWriteRequest)
-
-	case 76:
+	case BluetoothGATTReadDescriptorRequestID:
 		return new(BluetoothGATTReadDescriptorRequest)
-
-	case 77:
+	case BluetoothGATTWriteDescriptorRequestID:
 		return new(BluetoothGATTWriteDescriptorRequest)
-
-	case 78:
+	case BluetoothGATTNotifyRequestID:
 		return new(BluetoothGATTNotifyRequest)
-
-	case 79:
+	case BluetoothGATTNotifyDataResponseID:
 		return new(BluetoothGATTNotifyDataResponse)
-
-	case 80:
+	case SubscribeBluetoothConnectionsFreeRequestID:
 		return new(SubscribeBluetoothConnectionsFreeRequest)
-
-	case 81:
+	case BluetoothConnectionsFreeResponseID:
 		return new(BluetoothConnectionsFreeResponse)
-
-	case 82:
+	case BluetoothGATTErrorResponseID:
 		return new(BluetoothGATTErrorResponse)
-
-	case 83:
+	case BluetoothGATTWriteResponseID:
 		return new(BluetoothGATTWriteResponse)
-
-	case 84:
+	case BluetoothGATTNotifyResponseID:
 		return new(BluetoothGATTNotifyResponse)
-
+	case BluetoothDevicePairingResponseID:
+		return new(BluetoothDevicePairingResponse)
+	case BluetoothDeviceUnpairingResponseID:
+		return new(BluetoothDeviceUnpairingResponse)
+	case UnsubscribeBluetoothLEAdvertisementsRequestID:
+		return new(UnsubscribeBluetoothLEAdvertisementsRequest)
+	case BluetoothDeviceClearCacheResponseID:
+		return new(BluetoothDeviceClearCacheResponse)
+	case SubscribeVoiceAssistantRequestID:
+		return new(SubscribeVoiceAssistantRequest)
+	case VoiceAssistantRequestID:
+		return new(VoiceAssistantRequest)
+	case VoiceAssistantResponseID:
+		return new(VoiceAssistantResponse)
+	case VoiceAssistantEventResponseID:
+		return new(VoiceAssistantEventResponse)
+	case BluetoothLERawAdvertisementsResponseID:
+		return new(BluetoothLERawAdvertisementsResponse)
+	case ListEntitiesAlarmControlPanelResponseID:
+		return new(ListEntitiesAlarmControlPanelResponse)
+	case AlarmControlPanelStateResponseID:
+		return new(AlarmControlPanelStateResponse)
+	case AlarmControlPanelCommandRequestID:
+		return new(AlarmControlPanelCommandRequest)
+	case ListEntitiesTextResponseID:
+		return new(ListEntitiesTextResponse)
+	case TextStateResponseID:
+		return new(TextStateResponse)
+	case TextCommandRequestID:
+		return new(TextCommandRequest)
+	case ListEntitiesDateResponseID:
+		return new(ListEntitiesDateResponse)
+	case DateStateResponseID:
+		return new(DateStateResponse)
+	case DateCommandRequestID:
+		return new(DateCommandRequest)
+	case ListEntitiesTimeResponseID:
+		return new(ListEntitiesTimeResponse)
+	case TimeStateResponseID:
+		return new(TimeStateResponse)
+	case TimeCommandRequestID:
+		return new(TimeCommandRequest)
+	case VoiceAssistantAudioID:
+		return new(VoiceAssistantAudio)
+	case ListEntitiesEventResponseID:
+		return new(ListEntitiesEventResponse)
+	case EventResponseID:
+		return new(EventResponse)
+	case ListEntitiesValveResponseID:
+		return new(ListEntitiesValveResponse)
+	case ValveStateResponseID:
+		return new(ValveStateResponse)
+	case ValveCommandRequestID:
+		return new(ValveCommandRequest)
+	case ListEntitiesDateTimeResponseID:
+		return new(ListEntitiesDateTimeResponse)
+	case DateTimeStateResponseID:
+		return new(DateTimeStateResponse)
+	case DateTimeCommandRequestID:
+		return new(DateTimeCommandRequest)
 	default:
 		return nil
 	}
