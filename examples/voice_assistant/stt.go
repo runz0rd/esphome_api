@@ -6,10 +6,6 @@ import (
 	"net/http"
 )
 
-type Stt interface {
-	Transcribe(data []byte) (string, error)
-}
-
 type SttApiClient struct {
 	url string
 }

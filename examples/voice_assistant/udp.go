@@ -5,11 +5,6 @@ import (
 	"net"
 )
 
-type Listener interface {
-	GetPort() int
-	Stop() error
-	Read(num int) ([]byte, error)
-}
 
 type UDPListerner struct {
 	port int
